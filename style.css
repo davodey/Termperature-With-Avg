@@ -1,0 +1,29 @@
+.getTemp, .cities{
+	display:flex;
+	flex-direction: column;
+	margin:0;
+	padding:0;
+
+}
+ul
+li {
+	display:flex;
+	align-items: center;
+	margin:0;
+	padding:0;
+	padding:5px;
+}
+
+li:last-child {
+
+	background:#efefef;
+}
+
+span {
+	display: inline-block;
+	margin-left: 5px;
+}
+.cities {
+	border:1px solid gray;
+	margin-top:25px;
+}
