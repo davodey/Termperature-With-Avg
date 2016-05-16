@@ -1,12 +1,3 @@
-/*!
- *  Custom share counts with totals!
- *  Version: 1.0.0
- *  Author: David O'Dey
- *  Website: www.davidodey.com
- *  Twitter: @davodey
- *  Github: https://github.com/davodey
- *  License: MIT http://en.wikipedia.org/wiki/MIT_License or GPLv2 http://en.wikipedia.org/wiki/GNU_General_Public_License
- */
 
 (function ($) {
 	'use strict';
@@ -14,26 +5,32 @@
 	$.fn.avgWeather = function( options ) {
 		var settings = $.extend({}, $.fn.avgWeather.defaults, options);
 
-		return $(this).each(function () {
-			var $targetTotal = $(this).find('.total-temp'),
-				$count = $(this).find('.cities li[data-zip]').length,
+		$(this).each(function () {
+			var $targetTotal = $('.total-temp',this),
+				$count = $('.cities li[data-zip]', this).length,
 				iconUrl = 'http://openweathermap.org/img/w/',
 				total = 0;
 
 
-			$(this).find('li[data-zip]').each(function() {
-				var $target= $(this).find('.temp'),
-					$targetIcon = $(this).find('.icon'),
+			$('li[data-zip]', this).each(function() {
+				var $target= $('.temp', this),
+					$targetIcon = $('.icon', this),
 					$zipCode = $(this).attr('data-zip'),
-					jsonUrl = 'http://api.openweathermap.org/data/2.5/weather?zip=' + $zipCode + ',us&units='+ settings.tempUnits + '&appid=' + settings.apiKey,
+					jsonUrl = 'http://api.openweathermap.org/data/2.5/weather',
 					temp,
 					icon;
 
 					$.ajax({
 						url: jsonUrl,
 						cache: true,
-						type: 'POST',
+						type: 'GET',
 						dataType: 'jsonp',
+						data: {
+							zip: $zipCode,
+							units: settings.tempUnits,
+							country: 'US',
+							appid: settings.apiKey
+						},
 						success: function (data) {
 							temp = Math.round(data.main.temp);
 							icon = iconUrl + data.weather[0].icon + '.png';
@@ -46,13 +43,14 @@
 					});
 
 			});
+			return this;
 		});
 	};
 
 	$.fn.avgWeather.defaults = {
 		// set true or false to toggle the counts & API calls
 		apiKey: '66195cb6dbcf32ae854c00d0ed3b0534',
-		tempUnits: 'Imperial'
+		tempUnits: ''
 	};
 
 }(jQuery));
