@@ -1,29 +1,59 @@
-.getTemp, .cities{
-	display:flex;
-	flex-direction: column;
-	margin:0;
-	padding:0;
-
+body {
+	font-size:16px;
+	font-family: sans-serif;
 }
-ul
-li {
+h1 {
+	font-size:1.2em;
+}
+h3 {
+	font-weight:normal;
+	margin-bottom:0;
+}
+
+p {
+	margin-bottom:0;
+}
+ul {
 	display:flex;
+	justify-content: center;
 	align-items: center;
 	margin:0;
-	padding:0;
-	padding:5px;
+}
+li {
+	display:flex;
+	margin:0 10px;
+}
+input, button {
+	padding:10px 25px;
+	border:2px solid orange;
+	border-radius:3px;
+	font-size: 1em;
+
 }
 
-li:last-child {
-
-	background:#efefef;
+input {
+	width:400px;
 }
 
-span {
-	display: inline-block;
-	margin-left: 5px;
+button {
+	background:darkcyan;
+	border-color: darkcyan;
+	color:white;
+	cursor:pointer;
 }
-.cities {
-	border:1px solid gray;
-	margin-top:25px;
+button:hover {
+	background: #08A0A0;
+}
+
+.locationSubmit {
+	margin: 0 auto;
+	text-align:center;
+}
+
+.locationInfo {
+	text-align: center;
+	color:gray;
+}
+.hide {
+	display:none;
 }
